@@ -1,0 +1,54 @@
+<div class="pure-g-r">
+  <div class="pure-u-1" id="layout">
+    <h1>Connect Four</h1>
+    <h3>Sample App</h3>
+    <table id="tallyboard" class="pure-table">
+      <thead>
+        <tr>
+          <td id="playerCellA">
+            Player A
+          </td>
+          <td id="playerCellB">
+            Player B
+          </td>
+        <tr/>
+      </thead>
+      <tr>
+        <td id="turnCell" colspan="2">
+          <h1>TURN</h1>
+        </td>
+      <tr/>
+    </table>
+    <hr/>
+
+    <table id = "board" class="pure-table pure-table-bordered">
+      <tr class = "0">
+        <% (@board.cells). each do |cell| %>
+
+          <td class = "<%= cell.y %>" >
+            <button
+              class = "cellButton"
+              id = "<%= cell.x %>_<%= cell.y %>"
+              onclick = "play(<%= cell.x %>, <%= cell.y %>)">
+              0
+              <input type = "hidden"
+                id = "played_<%= cell.x %>_<%= cell.y %>"
+                value = "<%= cell.played %>" />
+            </button>
+          </td>
+
+          <% if cell.y == (@board.cols - 1)  %>
+            </tr>
+            <% if cell.x != (@board.rows - 1)  %>
+              <tr class = "<%= cell.x + 1 %>">
+            <% end %>
+          <% end %>
+        <% end %>
+    </table>
+
+    <input type="hidden" id="clicks" value="0"/>
+    <hr/>
+
+  </div>
+
+</div>
